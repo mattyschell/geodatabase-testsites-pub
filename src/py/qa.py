@@ -36,12 +36,12 @@ if __name__ == "__main__":
     logger.info('performing qa on {0}'.format(targetfcname))
 
     qareport = os.linesep
-    
+
     recordkount = cx_sde.execute_immediate(targetsdeconn
                                           ,fetchsql('checkcount.sql'
                                                     ,targetgdb.database))
     
-    if recordkount < 1000000:
+    if recordkount < 25:
 
         qareport = qareport + os.linesep \
                 + 'record count of {0} is suspicious'.format(recordkount)
@@ -50,7 +50,7 @@ if __name__ == "__main__":
                                            ,fetchsql('checkcolumns.sql'
                                                      ,targetgdb.database))
 
-    if expectedcols < 20:
+    if expectedcols < 36:
 
         qareport = qareport + os.linesep \
                 + 'missing expected columns'
